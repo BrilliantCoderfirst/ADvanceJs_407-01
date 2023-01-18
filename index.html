@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdvanceJs_407-01</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 class="heading">Emojee - Emoji 🔍 Application</h1>
+        <div class="firstHorizontalLine"></div>
+        <div class="form">
+            <input id="input" onkeyup="search()" type="text" placeholder="Emojee Search">
+            <button id="button">Search</button>
+        </div>
+        
+        <div class="forScroll">
+            <div id="allItems" class="allItems">
+                <div class="secondHorizontalLine"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script>
+
+        for (let i = 0; i < emojiList.length; i++) {
+            const left = document.createElement('div');
+            left.setAttribute('class', 'left');
+            const image = document.createElement('div');
+            image.setAttribute('class', 'image');
+            const p1 = document.createElement('p');
+            p1.setAttribute('id', 'p1');
+            p1.innerHTML = emojiList[i].emoji;
+            image.appendChild(p1);
+            left.appendChild(image);
+            const type = document.createElement('div');
+            type.setAttribute('class', 'type');
+            const p2 = document.createElement('p');
+            p2.setAttribute('id', 'p2');
+            p2.innerHTML = emojiList[i].aliases;
+            type.appendChild(p2);
+            left.appendChild(type);
+            const right = document.createElement('div');
+            right.setAttribute('class', 'right');
+            const p3 = document.createElement('p');
+            p3.setAttribute('id', 'p3');
+            p3.setAttribute('class', 'description');
+            p3.innerHTML = emojiList[i].description;
+            right.appendChild(p3);
+            const Items = document.createElement('div');
+            Items.setAttribute('class', 'Items');
+            Items.appendChild(left);
+            Items.appendChild(right);
+            const allItems = document.getElementById('allItems');
+            allItems.appendChild(Items);
+            const secondHorizontalLine = document.createElement('div');
+            secondHorizontalLine.setAttribute('class', 'secondHorizontalLine');
+            allItems.appendChild(secondHorizontalLine);
+        };
+
+        function search() {
+
+            document.getElementById('allItems').innerHTML = '';
+
+            const input = document.getElementById('input').value;
+
+            const tagArr = [];
+            emojiList.map((ele) => {
+                ele.tags.map((element) => {
+                    if (element.startsWith(input)) {
+                        tagArr.push(ele);
+                        const left = document.createElement('div');
+                        left.setAttribute('class', 'left');
+                        const image = document.createElement('div');
+                        image.setAttribute('class', 'image');
+                        const p1 = document.createElement('p');
+                        p1.setAttribute('id', 'p1');
+                        p1.innerHTML = `${ele.emoji}`;
+                        image.appendChild(p1);
+                        left.appendChild(image);
+                        const type = document.createElement('div');
+                        type.setAttribute('class', 'type');
+                        const p2 = document.createElement('p');
+                        p2.setAttribute('id', 'p2');
+                        p2.innerHTML = `${ele.aliases}`;
+                        type.appendChild(p2);
+                        left.appendChild(type);
+                        const right = document.createElement('div');
+                        right.setAttribute('class', 'right');
+                        const p3 = document.createElement('p');
+                        p3.setAttribute('id', 'p3');
+                        p3.setAttribute('class', 'description');
+                        p3.innerHTML = `${ele.description}`;
+                        right.appendChild(p3);
+                        const Items = document.createElement('div');
+                        Items.setAttribute('class', 'Items');
+                        Items.appendChild(left);
+                        Items.appendChild(right);
+                        const allItems = document.getElementById('allItems');
+                        allItems.appendChild(Items);
+                        const secondHorizontalLine = document.createElement('div');
+                        secondHorizontalLine.setAttribute('class', 'secondHorizontalLine');
+                        allItems.appendChild(secondHorizontalLine);
+                    };
+                });
+            });
+        };
+
+    </script>
+</body>
+
+</html>
